@@ -1,1166 +1,324 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-DK759FMHPN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-DK759FMHPN');
-</script>
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kutty Teachers - Palakkad</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manjari:wght@100;400;700&family=Nunito:wght@400;600;700;800&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <style>
-        /* --- CSS VARIABLES & RESET --- */
-        :root {
-            --primary-yellow: #FFD54F;
-            --primary-blue: #4FC3F7;
-            --primary-pink: #F06292;
-            --primary-green: #81C784;
-            --primary-purple: #BA68C8;
-            --dark-text: #1f2937;
-            --light-text: #4b5563;
-            --white: #ffffff;
-            --off-white: #f9fafb;
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            --radius-md: 0.5rem;
-            --radius-lg: 1rem;
-            --radius-full: 9999px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Nunito', sans-serif;
-            background-color: var(--off-white);
-            color: var(--dark-text);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Utility Class for Malayalam Font */
-        .malayalam-font {
-            font-family: 'Manjari', sans-serif;
-            line-height: 1.4;
-        }
-
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* --- ANIMATIONS --- */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes blobBounce {
-            0% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(30px, -50px) scale(1.1); }
-            66% { transform: translate(-20px, 20px) scale(0.9); }
-            100% { transform: translate(0, 0) scale(1); }
-        }
-
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .animate-on-scroll.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- NAVBAR --- */
-        nav {
-            background: var(--white);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: var(--shadow-sm);
-            height: 80px;
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            gap: 20px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--primary-pink), var(--primary-purple));
-            border-radius: 8px;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: 800;
-            font-size: 1.2rem;
-        }
-
-        .logo-text h1 {
-            font-family: 'Quicksand', sans-serif;
-            font-weight: 800;
-            font-size: 1.5rem;
-            color: var(--dark-text);
-            line-height: 1;
-        }
-
-        .logo-text span {
-            font-size: 0.75rem;
-            color: #888;
-            font-weight: 600;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-        }
-
-        .nav-link {
-            font-weight: 700;
-            color: var(--light-text);
-            transition: color 0.3s;
-        }
-
-        .nav-link:hover { color: var(--primary-pink); }
-
-        .btn-cta {
-            background-color: var(--primary-yellow);
-            padding: 10px 24px;
-            border-radius: var(--radius-full);
-            font-weight: 800;
-            transition: transform 0.2s, background 0.2s;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .btn-cta:hover {
-            transform: translateY(-2px);
-            background-color: #FDD835;
-        }
-
-        .mobile-menu-btn { 
-            display: none; 
-            background: none; 
-            border: none; 
-            font-size: 1.5rem; 
-            cursor: pointer; 
-        }
-
-        /* Language Toggle in Navbar */
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .lang-toggle {
-            display: inline-flex;
-            border-radius: 999px;
-            border: 1px solid #e5e7eb;
-            overflow: hidden;
-            font-size: 0.8rem;
-            font-weight: 700;
-        }
-
-        .lang-btn {
-            padding: 4px 10px;
-            border: none;
-            background: transparent;
-            cursor: pointer;
-            font-family: inherit;
-        }
-
-        .lang-btn.lang-active {
-            background: #111827;
-            color: #f9fafb;
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            position: relative;
-            padding: 80px 0;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        .blob {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(50px);
-            opacity: 0.5;
-            z-index: -1;
-            animation: blobBounce 10s infinite ease-in-out;
-        }
-
-        .blob-1 { top: -50px; left: -50px; width: 300px; height: 300px; background: var(--primary-blue); }
-        .blob-2 { bottom: 50px; right: -50px; width: 250px; height: 250px; background: var(--primary-pink); animation-delay: 2s; }
-
-        .tagline {
-            display: inline-block;
-            background-color: #E3F2FD;
-            color: #1565C0;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-        }
-
-        .hero-title {
-            font-family: 'Quicksand', sans-serif;
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: var(--light-text);
-            max-width: 700px;
-            margin: 0 auto 40px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .btn-primary {
-            background-color: var(--primary-pink);
-            color: white;
-            padding: 15px 30px;
-            border-radius: var(--radius-full);
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: 0.3s;
-            box-shadow: var(--shadow-lg);
-        }
-        .btn-primary:hover { background-color: #D81B60; transform: translateY(-3px); }
-
-        .btn-secondary {
-            background-color: white;
-            border: 2px solid #eee;
-            color: var(--dark-text);
-            padding: 15px 30px;
-            border-radius: var(--radius-full);
-            font-weight: 700;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: 0.3s;
-        }
-        .btn-secondary:hover { background-color: #f5f5f5; }
-
-        /* --- METHODOLOGY CARDS --- */
-        .section-padding { padding: 80px 0; }
-        
-        .section-header { text-align: center; margin-bottom: 50px; }
-        .section-title { font-size: 2.5rem; font-weight: 800; font-family: 'Quicksand', sans-serif; margin-bottom: 10px; }
-        .divider { width: 80px; height: 6px; background: var(--primary-yellow); margin: 0 auto; border-radius: 10px; }
-
-        .grid-4 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .method-card {
-            background: white;
-            padding: 30px;
-            border-radius: var(--radius-lg);
-            border-bottom: 4px solid var(--primary-blue);
-            box-shadow: var(--shadow-sm);
-            transition: transform 0.3s;
-        }
-        .method-card:hover { transform: translateY(-10px); }
-
-        .icon-circle {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            box-shadow: var(--shadow-lg);
-        }
-
-        /* --- TUTORS SECTION --- */
-        .tutor-card {
-            background: white;
-            border-radius: var(--radius-lg);
-            padding: 25px;
-            text-align: center;
-            box-shadow: var(--shadow-lg);
-            position: relative;
-            transition: 0.3s;
-            border: 1px solid #eee;
-        }
-        .tutor-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-xl); }
-
-        .status-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: #4CAF50;
-            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
-        }
-
-        .tutor-img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            margin: 0 auto 15px;
-            border: 4px solid white;
-            box-shadow: var(--shadow-sm);
-            background: #f0f0f0;
-            overflow: hidden;
-        }
-        .tutor-img img { width: 100%; height: 100%; object-fit: cover; }
-
-        .tutor-name { font-size: 1.25rem; font-weight: 800; margin-bottom: 5px; }
-        .tutor-role { color: var(--primary-purple); font-weight: 700; font-size: 0.9rem; margin-bottom: 10px; }
-        
-        .tutor-qual {
-            background: #f9f9f9;
-            padding: 10px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            color: #666;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        /* Custom Toggle Switch */
-        .toggle-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid #eee;
-            padding-top: 15px;
-            font-size: 0.8rem;
-            color: #888;
-            font-weight: 700;
-        }
-        .switch { position: relative; display: inline-block; width: 34px; height: 20px; }
-        .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: default; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
-        .slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
-        input:checked + .slider { background-color: var(--primary-green); }
-        input:checked + .slider:before { transform: translateX(14px); }
-
-        /* --- PROGRAMS (FEES) --- */
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        
-        .program-card {
-            background: white;
-            padding: 40px;
-            border-radius: 24px;
-            position: relative;
-            overflow: hidden;
-            border: 2px solid transparent;
-            box-shadow: var(--shadow-xl);
-        }
-
-        .program-online { border-color: #BBDEFB; }
-        .program-offline { border-color: #FFE082; background: linear-gradient(to bottom, #FFFDE7, #ffffff); }
-
-        .mode-badge {
-            position: absolute;
-            top: 0;
-            right: 0;
-            padding: 5px 15px;
-            border-bottom-left-radius: 10px;
-            font-weight: 700;
-            font-size: 0.8rem;
-            color: white;
-        }
-
-        .price-tag {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-        }
-        .price-sub { font-size: 1rem; font-weight: 400; color: #999; }
-
-        /* --- CONTACT SECTION --- */
-        .contact-section { background-color: #E3F2FD; position: relative; }
-        
-        .contact-container {
-            background: white;
-            border-radius: 20px;
-            box-shadow: var(--shadow-xl);
-            padding: 40px;
-        }
-
-        .contact-info {
-            background-color: var(--primary-pink);
-            color: white;
-            padding: 30px;
-            border-radius: 16px;
-        }
-
-        .contact-admission-note {
-            margin-top: 25px;
-            font-size: 0.9rem;
-            color: #fde7f0;
-        }
-
-        /* --- LOWER PRIMARY DOODLE SECTION --- */
-        .lp-section {
-            padding: 60px 0 80px;
-            background: #fef9c3;
-        }
-
-        .lp-inner {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 24px;
-            padding: 40px 30px;
-            box-shadow: var(--shadow-xl);
-            display: grid;
-            grid-template-columns: 220px 1fr;
-            gap: 30px;
-            align-items: center;
-        }
-
-        .lp-doodle {
-            position: relative;
-            width: 220px;
-            height: 220px;
-            border-radius: 999px;
-            background: radial-gradient(circle at 30% 30%, #ffe082, #ffd54f, #fbc02d);
-            overflow: hidden;
-        }
-
-        .lp-doodle-child {
-            position: absolute;
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: #fff;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-        }
-
-        .lp-doodle-book {
-            position: absolute;
-            width: 90px;
-            height: 60px;
-            background: #4fc3f7;
-            border-radius: 10px;
-            left: 50%;
-            top: 60%;
-            transform: translate(-50%, -50%) rotate(-8deg);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-        }
-
-        .lp-doodle-book::before,
-        .lp-doodle-book::after {
-            content: "";
-            position: absolute;
-            width: 80%;
-            height: 4px;
-            background: rgba(255,255,255,0.8);
-            left: 10%;
-            border-radius: 999px;
-        }
-
-        .lp-doodle-book::before { top: 18px; }
-        .lp-doodle-book::after { top: 34px; }
-
-        .lp-doodle-star {
-            position: absolute;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            border: 4px solid #ffb300;
-            top: 20px;
-            left: 20px;
-            animation: floatStar 3s ease-in-out infinite;
-        }
-
-        .lp-doodle-star:nth-child(2) {
-            top: 40px;
-            right: 25px;
-            left: auto;
-            border-color: #ffca28;
-            animation-delay: 0.6s;
-        }
-
-        @keyframes floatStar {
-            0%, 100% { transform: translateY(0); opacity: 0.8; }
-            50% { transform: translateY(-14px); opacity: 1; }
-        }
-
-        .lp-text-quote {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #92400e;
-            margin-bottom: 12px;
-        }
-
-        .lp-text-sub {
-            font-size: 0.95rem;
-            color: #78350f;
-        }
-
-        /* --- FOOTER --- */
-        footer { background: #1f2937; color: #9ca3af; padding: 40px 0; text-align: center; }
-
-        /* --- RESPONSIVE MEDIA QUERIES --- */
-        @media (max-width: 768px) {
-            .hero-title { font-size: 2rem; }
-            .nav-links { display: none; }
-            .mobile-menu-btn { display: block; }
-            .grid-2 { grid-template-columns: 1fr; }
-            .hero-buttons { flex-direction: column; padding: 0 40px; }
-            .nav-right { gap: 10px; }
-            .lp-inner {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .lp-doodle {
-                margin: 0 auto;
-            }
-        }
-
-        /* Mobile Menu Style */
-        .mobile-menu {
-            display: none;
-            background: white;
-            padding: 20px;
-            position: absolute;
-            top: 80px;
-            left: 0;
-            width: 100%;
-            box-shadow: var(--shadow-lg);
-            z-index: 999;
-        }
-        .mobile-menu a { display: block; padding: 10px 0; font-weight: 700; border-bottom: 1px solid #eee; }
-
-        /* --- POPUP --- */
-        .popup-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(4px);
-            z-index: 2000;
-            display: none;
-            justify-content: center;
-            align-items: center;
-        }
-        .popup-box {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
-            position: relative;
-            border: 4px solid var(--primary-yellow);
-            animation: fadeIn 0.5s ease;
-        }
-        .close-btn { position: absolute; top: 10px; right: 15px; border: none; background: none; font-size: 1.5rem; cursor: pointer; color: #999; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nihar B | Primary Teacher & Social Worker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1e8a3f; /* leafy green */
+      --secondary: #66c18c; /* soft mint */
+      --accent: #f4c95d; /* warm accent */
+      --dark: #0f172a;
+      --light: #fbfffe;
+    }
+
+    * {box-sizing: border-box; margin:0; padding:0; font-family: 'Poppins', sans-serif}
+    html,body {height:100%;}
+
+    /* Background canvas sits behind everything */
+    .bg-wrap {
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      overflow:hidden;
+      background: linear-gradient(160deg, #eafaf1 0%, #f6fff7 50%, #e9fbf2 100%);
+    }
+
+    /* Floating leaf SVG container */
+    .leaves {
+      position: absolute;
+      inset:0;
+      pointer-events: none;
+    }
+
+    /* subtle particle overlay */
+    canvas.particles {
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      display:block;
+      opacity:0.6;
+      mix-blend-mode: multiply;
+    }
+
+    header {
+      min-height:80vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:3rem 1.5rem;
+      color:var(--dark);
+      position:relative;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.75));
+      border-radius:20px;
+      padding:2rem 2.5rem;
+      max-width:1000px;
+      box-shadow: 0 20px 50px rgba(20,60,20,0.08);
+      backdrop-filter: blur(6px);
+    }
+
+    h1 {font-size:2.6rem; color:var(--primary);}
+    h2 {font-weight:600; color:var(--dark); margin-top:0.4rem}
+    p.lead {margin-top:0.8rem; color:rgba(15,23,42,0.8)}
+
+    section {padding:4rem 8%;}
+    .section-title {font-size:1.8rem; margin-bottom:1.2rem; color:var(--primary)}
+
+    .card {background:white;border-radius:14px;padding:1.6rem;box-shadow:0 18px 36px rgba(15,23,42,0.06);}
+
+    .grid {display:grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap:1.6rem}
+    ul {list-style:none}
+    ul li::before {content:'•'; color:var(--secondary); display:inline-block; width:1em}
+
+    .badge {display:inline-block;background:var(--secondary);color:white;padding:0.35rem 0.8rem;border-radius:999px;font-size:0.85rem}
+
+    footer {background:var(--dark);color:white;text-align:center;padding:2rem}
+
+    /* Responsive tweaks */
+    @media (max-width:768px) {
+      h1 {font-size:1.9rem}
+      section {padding:2.4rem 6%}
+      .hero-card {padding:1.4rem}
+    }
+
+    /* --- Leaf animation styles --- */
+    .leaf {
+      position:absolute;
+      width:64px; height:64px;
+      transform-origin:center;
+      will-change:transform, opacity, filter;
+      filter: drop-shadow(0 6px 10px rgba(20,60,20,0.12));
+      opacity:0.95;
+    }
+
+    @keyframes floatUp {
+      0% {transform: translateY(30vh) rotate(0deg) scale(0.7); opacity:0}
+      20% {opacity:1}
+      100% {transform: translateY(-30vh) rotate(360deg) scale(1); opacity:0}
+    }
+
+    /* subtle parallax tilt on hero */
+    .hero-card:hover {transform: translateY(-6px)}
+    .hero-card {transition:transform 0.35s ease}
+
+  </style>
 </head>
 <body>
 
-    <!-- POPUP: Enquire button removed, only close + info -->
-    <div id="popup" class="popup-overlay">
-        <div class="popup-box">
-            <button class="close-btn" onclick="closePopup()">&times;</button>
-            <div style="font-size: 3rem; margin-bottom: 10px;">🎓</div>
-            <h3 
-                class="lang-text" 
-                data-en="Admissions are now open!" 
-                data-ml="അഡ്മിഷൻ ആരംഭിച്ചിരിക്കുന്നു!"
-                style="font-size: 1.5rem; font-weight: 700; color: #333; margin-bottom: 5px;">
-                Admissions are now open!
-            </h3>
-            <p 
-                class="lang-text" 
-                data-en="New batches starting January." 
-                data-ml="പുതിയ ബാച്ചുകൾ ജനുവരിയിൽ ആരംഭിക്കുന്നു."
-                style="color: var(--primary-pink); font-weight: 700;">
-                New batches starting January.
-            </p>
-            <p 
-                class="lang-text" 
-                data-en="Students from Palakkad and anywhere in Kerala can join." 
-                data-ml="പാലക്കാട് നിന്നും കേരളത്തിന്റെ ഏത് ഭാഗത്തുനിന്നും കുട്ടികൾക്ക് ചേരാം."
-                style="margin: 15px 0; font-size: 0.9rem; color: #666;">
-                Students from Palakkad and anywhere in Kerala can join.
-            </p>
-            <!-- Only close button, no Enquire Now -->
-        </div>
+  <div class="bg-wrap" aria-hidden="true">
+    <canvas class="particles"></canvas>
+    <svg class="leaves" id="leaves-svg" width="100%" height="100%">
+      <defs>
+        <g id="leaf-path" transform="scale(0.9)">
+          <path d="M12 2c3 0 5 2 5 5 0 3-6 9-6 9s-6-6-6-9c0-3 2-5 5-5z" fill="var(--secondary)" opacity="0.95"/>
+          <path d="M10 6c1 1 3 2 4 2" stroke="rgba(10,50,20,0.2)" stroke-width="0.6" fill="none"/>
+        </g>
+      </defs>
+    </svg>
+  </div>
+
+<header>
+  <div class="hero-card" data-aos="fade-up">
+    <h1>Nihar B</h1>
+    <h2>Primary Teacher & Social Worker</h2>
+    <p class="lead">Palakkad, Kerala &nbsp;|&nbsp; +91 9446953483 &nbsp;|&nbsp; niharb0101@gmail.com</p>
+    <div style="margin-top:0.9rem;"><span class="badge">KTET Category 1 & 2 Qualified</span></div>
+  </div>
+</header>
+
+<section data-aos="fade-up">
+  <h2 class="section-title">Professional Profile</h2>
+  <div class="card">
+    <p>
+      Dedicated and patient educator specializing in Elementary Education and Social Service. Ranked <strong>311</strong> in the Kerala PSC Main List (709/2023) for LP School Teacher (Malayalam Medium). Strong commitment to child-centric pedagogy, inclusive learning, and holistic student development through academics, sports, and creative engagement.
+    </p>
+  </div>
+</section>
+
+<section data-aos="fade-up">
+  <h2 class="section-title">Work Experience</h2>
+  <div class="grid">
+    <div class="card" data-aos="fade-right">
+      <h3>Office Assistant</h3>
+      <p>Karunya Geriatric Care Centre | 2023 – Present</p>
+      <ul>
+        <li>Managing office administration and documentation with high accuracy.</li>
+        <li>Utilizing patience and empathy in a care-oriented environment.</li>
+      </ul>
     </div>
 
-    <nav>
-        <div class="container nav-content">
-            <a href="#" class="logo">
-                <div class="logo-icon">K</div>
-                <div class="logo-text">
-                    <h1>Kutty Teachers</h1>
-                    <span 
-                        class="lang-text" 
-                        data-en="Learning made joyful" 
-                        data-ml="പഠനം ഇനി കളിയാക്കാം">
-                        Learning made joyful
-                    </span>
-                </div>
-            </a>
-            
-            <div class="nav-right">
-                <div class="nav-links">
-                    <a href="#home" class="nav-link">Home</a>
-                    <a href="#methodology" class="nav-link">Methodology</a>
-                    <a href="#tutors" class="nav-link">Tutors</a>
-                    <a href="#fees" class="nav-link">Fees</a>
-                    <a href="#contact" class="btn-cta">Enroll Now</a>
-                </div>
+    <div class="card" data-aos="fade-left">
+      <h3>LP School Teacher (PSC Selection)</h3>
+      <p>PSC 709/2023 | 2023</p>
+      <ul>
+        <li>Ranked 311 in the Main List for LP School Teacher (Malayalam Medium).</li>
+      </ul>
+    </div>
 
-                <!-- Language Toggle -->
-                <div class="lang-toggle">
-                    <button id="langEnBtn" class="lang-btn lang-active">EN</button>
-                    <button id="langMlBtn" class="lang-btn">ML</button>
-                </div>
+    <div class="card" data-aos="fade-right">
+      <h3>Cluster Resource Coordinator</h3>
+      <p>BRC Puthur | 2023</p>
+      <ul>
+        <li>Facilitated teacher training programs and academic resource coordination.</li>
+      </ul>
+    </div>
 
-                <button class="mobile-menu-btn" onclick="toggleMenu()">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-        
-        <div id="mobileMenu" class="mobile-menu">
-            <a href="#home" onclick="toggleMenu()">Home</a>
-            <a href="#methodology" onclick="toggleMenu()">Methodology</a>
-            <a href="#tutors" onclick="toggleMenu()">Tutors</a>
-            <a href="#fees" onclick="toggleMenu()">Fees</a>
-            <a href="#contact" onclick="toggleMenu()" style="color: var(--primary-pink);">Enroll Now</a>
-        </div>
-    </nav>
+    <div class="card" data-aos="fade-left">
+      <h3>Sports & Mathematics Teacher</h3>
+      <p>True Line Public School | 2023</p>
+      <ul>
+        <li>Handled dual responsibilities in physical education and Mathematics instruction.</li>
+        <li>Focused on foundational mathematical concepts and student athletic development.</li>
+      </ul>
+    </div>
 
-    <section id="home" class="hero">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        
-        <div class="container">
-            <span class="tagline animate-on-scroll">
-                <i class="fas fa-star" style="color: orange;"></i> Palakkad's Best Tuition Platform
-            </span>
-            
-            <h1 class="hero-title animate-on-scroll">
-                Personalized Learning for <br>
-                <span style="color: var(--primary-pink);">LKG to Grade 8</span>
-            </h1>
+    <div class="card" data-aos="fade-up">
+      <h3>Primary School Teacher (Grade 1)</h3>
+      <p>Govt. Tribal School, Anakkal | 2023</p>
+      <ul>
+        <li>Delivered foundational education to students in a tribal community setting.</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-            <p 
-                class="hero-subtitle animate-on-scroll lang-text"
-                data-en="A research-based learning model combining Finnish and Japanese education methods with KCF 2023 and NCF 2020 syllabus."
-                data-ml="ഫിൻലാൻഡ്, ജപ്പാൻ വിദ്യാഭ്യാസ മാതൃകകളും KCF 2023, NCF 2020 സിലബസും കോർത്തിണക്കിയുള്ള മികച്ച പഠനരീതി.">
-                A research-based learning model combining Finnish and Japanese education methods with KCF 2023 and NCF 2020 syllabus.
-            </p>
+<section data-aos="fade-up">
+  <h2 class="section-title">Education</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>D.El.Ed (2020 – 2022)</h3>
+      <p>Govt. TTI Chittur, Palakkad</p>
+      <p>Specialization: Primary Pedagogy and Child Development.</p>
+    </div>
+    <div class="card">
+      <h3>B.Sc Mathematics (2017 – 2020)</h3>
+      <p>MG University | Vazhoor</p>
+      <p>Score: 66.9%</p>
+    </div>
+    <div class="card">
+      <h3>KTET Qualified</h3>
+      <p>Category 1 & 2 — Qualified for Lower Primary and Upper Primary teaching levels.</p>
+    </div>
+    <div class="card">
+      <h3>Rashtrabhasa Praveen</h3>
+      <p>DBHP Sabha — Highest level certification in Hindi language proficiency.</p>
+    </div>
+  </div>
+</section>
 
-            <div class="hero-buttons animate-on-scroll">
-                <a href="#contact" class="btn-primary">
-                    Start Learning
-                </a>
-                <a href="#tutors" class="btn-secondary">
-                    <i class="fas fa-user-friends"></i> Meet Tutors
-                </a>
-            </div>
-        </div>
-    </section>
+<section data-aos="fade-up">
+  <h2 class="section-title">Key Skills & Competencies</h2>
+  <div class="grid">
+    <div class="card"><strong>Teaching:</strong> Pedagogy, Child Observation, Mentoring, Lesson Planning.</div>
+    <div class="card"><strong>Technical:</strong> English Typing (35 WPM), Malayalam Typing, Video Editing, YouTube Content.</div>
+    <div class="card"><strong>Creative:</strong> Basic Piano, Drawing/Sketching, Photography, Paper Craft.</div>
+    <div class="card"><strong>Languages:</strong> Malayalam, English, Hindi (Praveen), Tamil.</div>
+  </div>
+</section>
 
-    <section id="methodology" class="section-padding">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <h2 class="section-title">Our Unique Approach</h2>
-                <div class="divider"></div>
-                <p 
-                    class="lang-text" 
-                    data-en="Ensuring your child's emotional and intellectual development."
-                    data-ml="കുട്ടികളുടെ മാനസികവും ബൗദ്ധികവുമായ വളർച്ച ഉറപ്പാക്കുന്നു"
-                    style="margin-top: 15px; color: #666;">
-                    Ensuring your child's emotional and intellectual development.
-                </p>
-            </div>
+<section data-aos="fade-up">
+  <h2 class="section-title">Volunteer & Leadership Experience</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>NSS Volunteer</h3>
+      <p>MG University Unit (2017 – 2018)</p>
+      <p>Participated in community service and social welfare projects.</p>
+    </div>
+    <div class="card">
+      <h3>Rashtrapati Scout</h3>
+      <p>Bharat Scouts and Guides (2012 – 2015)</p>
+      <p>Recipient of the President's Award, the highest honor in Scouting.</p>
+    </div>
+    <div class="card">
+      <h3>Achievements & Activities</h3>
+      <ul>
+        <li>Member of the College Badminton Team.</li>
+        <li>State Level B-Grade in Multimedia Presentation.</li>
+        <li>District Level A-Grade in Mathematics Fair (Sasthrolsavam).</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-            <div class="grid-4">
-                <div class="method-card animate-on-scroll">
-                    <div class="icon-circle" style="background: var(--primary-blue);">
-                        <i class="fas fa-globe-asia"></i>
-                    </div>
-                    <h3 style="font-weight: 800; margin-bottom: 10px;">Global Standards</h3>
-                    <p style="font-size: 0.9rem; color: #666;">Integrating joyful Finnish education with disciplined Japanese models.</p>
-                </div>
-                <div class="method-card animate-on-scroll">
-                    <div class="icon-circle" style="background: var(--primary-pink);">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <h3 style="font-weight: 800; margin-bottom: 10px;">Deep Mentoring</h3>
-                    <p style="font-size: 0.9rem; color: #666;">Focusing on emotional, ethical, and social development.</p>
-                </div>
-                <div class="method-card animate-on-scroll">
-                    <div class="icon-circle" style="background: var(--primary-yellow);">
-                        <i class="fas fa-book-reader"></i>
-                    </div>
-                    <h3 style="font-weight: 800; margin-bottom: 10px;">NCERT & SCERT</h3>
-                    <p style="font-size: 0.9rem; color: #666;">Strict adherence to syllabus while adding value competencies.</p>
-                </div>
-                <div class="method-card animate-on-scroll">
-                    <div class="icon-circle" style="background: var(--primary-green);">
-                        <i class="fas fa-file-alt"></i>
-                    </div>
-                    <h3 style="font-weight: 800; margin-bottom: 10px;">Weekly Report</h3>
-                    <p style="font-size: 0.9rem; color: #666;">Comprehensive evaluation of academic & behavioral patterns.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section id="tutors" class="section-padding" style="background-color: #FDF2F8;">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <h2 class="section-title">Meet Kutty Teachers</h2>
-                <div class="divider" style="background: var(--primary-purple);"></div>
-                <p 
-                    class="lang-text"
-                    data-en="Experienced and caring teachers."
-                    data-ml="പരിചയസമ്പന്നരായ അധ്യാപകർ"
-                    style="margin-top: 15px; color: #666;">
-                    Experienced and caring teachers.
-                </p>
-            </div>
 
-            <div class="grid-4" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
-                
-                <!-- Nihar -->
-                <div class="tutor-card animate-on-scroll">
-                    <div class="status-badge"></div>
-                    <div class="tutor-img" style="background: #E3F2FD;">
-                        <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Nihar" alt="Nihar">
-                    </div>
-                    <h3 class="tutor-name">Nihar</h3>
-                    <p class="tutor-role">Math & Bio Science</p>
-                    <div class="tutor-qual">
-                        D.El.Ed (88%)<br>
-                        Degree: Maths<br>
-                        Hindi Praveen<br>
-                        KTET I & II qualified
-                    </div>
-                    <div class="toggle-container">
-                        <span>Availability</span>
-                        <label class="switch">
-                            <input type="checkbox" checked disabled>
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                </div>
+<footer>
+  <p>© 2026 Nihar B | Primary Teacher & Social Worker</p>
+</footer>
 
-                <!-- Sona -->
-                <div class="tutor-card animate-on-scroll">
-                    <div class="status-badge"></div>
-                    <div class="tutor-img" style="background: #FCE4EC;">
-                        <img src="https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=Sona" alt="Sona">
-                    </div>
-                    <h3 class="tutor-name">Sona</h3>
-                    <p class="tutor-role">Electronics</p>
-                    <div class="tutor-qual">
-                        D.El.Ed (91%)<br>
-                        Degree: Electronics<br>
-                        Plus Two: Elec.<br>
-                        Rank 29 – PSC LP Malayalam Teacher 2023<br>
-                        KTET I & II qualified
-                    </div>
-                    <div class="toggle-container">
-                        <span>Availability</span>
-                        <label class="switch">
-                            <input type="checkbox" checked disabled>
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                </div>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({duration:900, once:true});
 
-                <!-- Sparsha -->
-                <div class="tutor-card animate-on-scroll">
-                    <div class="status-badge"></div>
-                    <div class="tutor-img" style="background: #FFFDE7;">
-                        <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Sparsha" alt="Sparsha">
-                    </div>
-                    <h3 class="tutor-name">Sparsha</h3>
-                    <p class="tutor-role">English & Maths</p>
-                    <div class="tutor-qual">
-                        D.El.Ed (90%)<br>
-                        Degree: English<br>
-                        Bio-Maths<br>
-                        Rank 56 – PSC LP Malayalam Teacher 2023<br>
-                        KTET I & II qualified
-                    </div>
-                    <div class="toggle-container">
-                        <span>Availability</span>
-                        <label class="switch">
-                            <input type="checkbox" checked disabled>
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                </div>
+  /* --- Floating leaves generator --- */
+  (function generateLeaves(){
+    const svg = document.getElementById('leaves-svg');
+    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
 
-                <!-- Shalini -->
-                <div class="tutor-card animate-on-scroll">
-                    <div class="status-badge"></div>
-                    <div class="tutor-img" style="background: #E8F5E9;">
-                        <img src="https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=Shalini" alt="Shalini">
-                    </div>
-                    <h3 class="tutor-name">Shalini</h3>
-                    <p class="tutor-role">Humanities</p>
-                    <div class="tutor-qual">
-                        D.El.Ed (90%)<br>
-                        Degree: Economics<br>
-                        Commerce<br>
-                        KTET I & II qualified
-                    </div>
-                    <div class="toggle-container">
-                        <span>Availability</span>
-                        <label class="switch">
-                            <input type="checkbox" checked disabled>
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                </div>
+    const leafCount = Math.min(14, Math.floor(vw/80));
+    for(let i=0;i<leafCount;i++){
+      const use = document.createElementNS('http://www.w3.org/2000/svg','use');
+      use.setAttributeNS('http://www.w3.org/1999/xlink','href','#leaf-path');
+      const startX = Math.random()*vw;
+      const size = 28 + Math.random()*60; // px
+      use.setAttribute('width', size);
+      use.setAttribute('height', size);
+      use.setAttribute('x', startX);
+      use.setAttribute('y', vh + Math.random()*200);
+      use.style.opacity = 0;
+      use.classList.add('leaf');
 
-                <!-- Harsha -->
-                <div class="tutor-card animate-on-scroll">
-                    <div class="status-badge"></div>
-                    <div class="tutor-img" style="background: #F3E5F5;">
-                        <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Harsha" alt="Harsha">
-                    </div>
-                    <h3 class="tutor-name">Harsha</h3>
-                    <p class="tutor-role">English Expert</p>
-                    <div class="tutor-qual">
-                        D.El.Ed (90%)<br>
-                        PG: English<br>
-                        Degree: English<br>
-                        KTET I & II qualified
-                    </div>
-                    <div class="toggle-container">
-                        <span>Availability</span>
-                        <label class="switch">
-                            <input type="checkbox" checked disabled>
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                </div>
+      // random animation timings
+      const duration = 12 + Math.random()*18; // seconds
+      const delay = Math.random()*8; // seconds
+      use.style.animation = `floatUp ${duration}s linear ${delay}s infinite`;
+      use.style.transformOrigin = 'center';
+      use.style.transform = `translateY(0) rotate(${Math.random()*360}deg)`;
+      svg.appendChild(use);
+    }
+  })();
 
-                <!-- Lini -->
-                <div class="tutor-card animate-on-scroll">
-                    <div class="status-badge"></div>
-                    <div class="tutor-img" style="background: #E0F7FA;">
-                        <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Lini" alt="Lini">
-                    </div>
-                    <h3 class="tutor-name">Lini</h3>
-                    <p class="tutor-role">LP Malayalam & Science</p>
-                    <div class="tutor-qual">
-                        D.El.Ed (92%)<br>
-                        Degree: BSc Chemistry<br>
-                        Rank 5 – PSC LP Malayalam Teacher 2023<br>
-                        KTET I & II qualified
-                    </div>
-                    <div class="toggle-container">
-                        <span>Availability</span>
-                        <label class="switch">
-                            <input type="checkbox" checked disabled>
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                </div>
+  /* --- Particles canvas (subtle floating orbs) --- */
+  (function particles(){
+    const canvas = document.querySelector('canvas.particles');
+    const ctx = canvas.getContext('2d');
+    let W = canvas.width = window.innerWidth;
+    let H = canvas.height = window.innerHeight;
+    const num = Math.floor((W*H)/90000) + 20; // density
+    const parts = [];
 
-                <!-- Sreya -->
-                <div class="tutor-card animate-on-scroll">
-                    <div class="status-badge"></div>
-                    <div class="tutor-img" style="background: #FFF3E0;">
-                        <img src="https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=Sreya" alt="Sreya">
-                    </div>
-                    <h3 class="tutor-name">Sreya</h3>
-                    <p class="tutor-role">English & Primary Classes</p>
-                    <div class="tutor-qual">
-                        D.El.Ed (90%)<br>
-                        Degree: English<br>
-                        Teaching experience in primary classes<br>
-                        KTET I & II qualified
-                    </div>
-                    <div class="toggle-container">
-                        <span>Availability</span>
-                        <label class="switch">
-                            <input type="checkbox" checked disabled>
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                </div>
+    function rand(min,max){return Math.random()*(max-min)+min}
 
-            </div>
-        </div>
-    </section>
+    class P{constructor(){this.reset()}
+      reset(){this.x=rand(0,W); this.y=rand(0,H); this.r=rand(0.6,2.2); this.vx=rand(-0.2,0.2); this.vy=rand(-0.3,-0.05); this.alpha=rand(0.15,0.5)}
+      step(){this.x+=this.vx; this.y+=this.vy; if(this.y<-10||this.x<-20||this.x>W+20) this.reset();}
+      draw(){ctx.beginPath(); ctx.globalAlpha=this.alpha; ctx.arc(this.x,this.y,this.r,0,Math.PI*2); ctx.fillStyle='rgba(34,112,71,0.18)'; ctx.fill()}
+    }
 
-    <section id="fees" class="section-padding">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Class Modes & Fees</h2>
-                <div class="divider"></div>
-            </div>
+    for(let i=0;i<num;i++) parts.push(new P());
 
-            <div class="grid-2">
-                <div class="program-card program-online animate-on-scroll">
-                    <div 
-                        class="mode-badge lang-text" 
-                        style="background: var(--primary-blue);"
-                        data-en="Online"
-                        data-ml="ഓൺലൈൻ">
-                        Online
-                    </div>
-                    <h3 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 20px; color: var(--primary-blue);">Online Class</h3>
-                    <ul style="color: #555; font-size: 0.95rem; line-height: 2;">
-                        <li><i class="fas fa-check" style="color:green; margin-right:10px;"></i> Weekdays (Mon–Fri)</li>
-                        <li><i class="fas fa-check" style="color:green; margin-right:10px;"></i> 1–2 Hours Duration</li>
-                        <li><i class="fas fa-check" style="color:green; margin-right:10px;"></i> Digital Assignments</li>
-                        <li 
-                            class="lang-text"
-                            data-en="For LKG to Grade 8"
-                            data-ml="LKG മുതൽ Grade 8 വരെ">
-                            For LKG to Grade 8
-                        </li>
-                    </ul>
-                    <div class="price-tag" style="color: var(--primary-blue);">
-                        ₹300 <span class="price-sub">/ hour</span>
-                    </div>
-                </div>
+    function loop(){
+      ctx.clearRect(0,0,W,H);
+      for(let p of parts){p.step(); p.draw()}
+      requestAnimationFrame(loop);
+    }
+    loop();
 
-                <div class="program-card program-offline animate-on-scroll">
-                    <div 
-                        class="mode-badge lang-text" 
-                        style="background: #FBC02D;"
-                        data-en="Offline"
-                        data-ml="ഓഫ്‌ലൈൻ">
-                        Offline
-                    </div>
-                    <h3 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 20px; color: #F57F17;">Offline Class</h3>
-                    <ul style="color: #555; font-size: 0.95rem; line-height: 2;">
-                        <li><i class="fas fa-check" style="color:green; margin-right:10px;"></i> Weekends (Sat–Sun)</li>
-                        <li><i class="fas fa-check" style="color:green; margin-right:10px;"></i> Hands-on Activities</li>
-                        <li><i class="fas fa-check" style="color:green; margin-right:10px;"></i> Social Skill Building</li>
-                        <li 
-                            class="lang-text"
-                            data-en="Travel charges apply"
-                            data-ml="യാത്രാക്കൂലി ബാധകം">
-                            Travel charges apply
-                        </li>
-                    </ul>
-                    <div class="price-tag" style="color: #F57F17;">
-                        ₹300 <span class="price-sub">/ hour</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    window.addEventListener('resize', ()=>{W=canvas.width=window.innerWidth; H=canvas.height=window.innerHeight});
+  })();
 
-    <section id="contact" class="section-padding contact-section">
-        <div class="container">
-            <div class="contact-container animate-on-scroll">
-                <div class="contact-info">
-                    <h2 
-                        class="lang-text"
-                        data-en="Call Us"
-                        data-ml="ഞങ്ങളെ വിളിക്കൂ"
-                        style="font-size: 2rem; font-weight: 700; margin-bottom: 20px;">
-                        Call Us
-                    </h2>
-                    <p style="margin-bottom: 30px;">
-                        Serving students from Palakkad and all over Kerala.
-                    </p>
-                    
-                    <div style="display: flex; flex-direction: column; gap: 20px;">
-                        <div style="display: flex; align-items: center; gap: 15px;">
-                            <i class="fas fa-phone-alt" style="font-size: 1.2rem;"></i>
-                            <span style="font-size: 1.1rem; font-weight: 700;">9446953483</span>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 15px;">
-                            <i class="fas fa-envelope" style="font-size: 1.2rem;"></i>
-                            <span>kuttytchrs@gmail.com</span>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 15px;">
-                            <i class="fab fa-whatsapp" style="font-size: 1.5rem;"></i>
-                            <span>Chat on WhatsApp</span>
-                        </div>
-                    </div>
+  // ensure leaves reposition on resize (simple reload for stability)
+  let resizeTimer; window.addEventListener('resize', ()=>{clearTimeout(resizeTimer); resizeTimer=setTimeout(()=>location.reload(),300)})
+</script>
 
-                    <p class="contact-admission-note">
-                        For admissions, please call <strong>9446953483</strong> or email <strong>kuttytchrs@gmail.com</strong>.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Lower Primary Doodle + Quote Section -->
-    <section class="lp-section">
-        <div class="container">
-            <div class="lp-inner">
-                <div class="lp-doodle">
-                    <div class="lp-doodle-child"></div>
-                    <div class="lp-doodle-book"></div>
-                    <div class="lp-doodle-star"></div>
-                    <div class="lp-doodle-star"></div>
-                </div>
-                <div>
-                    <p class="lp-text-quote">
-                        “Lower primary years are where curiosity becomes confidence.”
-                    </p>
-                    <p class="lp-text-sub">
-                        Every question, scribble, and small experiment can grow into deep learning—
-                        when children are heard, guided, and encouraged every day.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <h2 style="color: white; font-family: 'Quicksand'; font-weight: 700; margin-bottom: 10px;">Kutty Teachers</h2>
-            <p style="font-size: 0.9rem; margin-bottom: 20px;">Personalized Learning • Mentoring • Values</p>
-            <p 
-                class="lang-text"
-                data-en="Palakkad, Kerala"
-                data-ml="പാലക്കാട്, കേരളം"
-                style="font-size: 0.8rem; opacity: 0.7;">
-                Palakkad, Kerala
-            </p>
-            <div style="margin-top: 20px; opacity: 0.5; font-size: 0.8rem;">
-                © 2024 Kutty Teachers. All rights reserved.
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Language switching
-        function setLanguage(lang) {
-            const elements = document.querySelectorAll('.lang-text');
-            elements.forEach(el => {
-                const en = el.getAttribute('data-en');
-                const ml = el.getAttribute('data-ml');
-                if (lang === 'ml' && ml) {
-                    el.textContent = ml;
-                    el.classList.add('malayalam-font');
-                } else if (en) {
-                    el.textContent = en;
-                    el.classList.remove('malayalam-font');
-                }
-            });
-
-            const enBtn = document.getElementById('langEnBtn');
-            const mlBtn = document.getElementById('langMlBtn');
-            if (enBtn && mlBtn) {
-                enBtn.classList.toggle('lang-active', lang === 'en');
-                mlBtn.classList.toggle('lang-active', lang === 'ml');
-            }
-        }
-
-        const popup = document.getElementById('popup');
-        
-        // Show popup after 2 seconds & set default language to English
-        window.addEventListener('load', () => {
-            setLanguage('en'); // default: English only visible
-            setTimeout(() => {
-                popup.style.display = 'flex';
-            }, 2000);
-        });
-
-        function closePopup() {
-            popup.style.display = 'none';
-        }
-
-        // Language toggle button events
-        document.getElementById('langEnBtn').addEventListener('click', () => setLanguage('en'));
-        document.getElementById('langMlBtn').addEventListener('click', () => setLanguage('ml'));
-
-        // Mobile Menu Logic
-        const mobileMenu = document.getElementById('mobileMenu');
-        function toggleMenu() {
-            if (mobileMenu.style.display === 'block') {
-                mobileMenu.style.display = 'none';
-            } else {
-                mobileMenu.style.display = 'block';
-            }
-        }
-
-        // Scroll Animation Logic (Intersection Observer)
-        const observerOptions = {
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                }
-            });
-        }, observerOptions);
-
-        const animatedElements = document.querySelectorAll('.animate-on-scroll');
-        animatedElements.forEach((el) => observer.observe(el));
-    </script>
 </body>
 </html>
-
