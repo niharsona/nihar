@@ -1,324 +1,532 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Nihar B | Primary Teacher & Social Worker</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- === Styles (all local / embedded; no CDNs) === -->
   <style>
-    :root {
-      --primary: #1e8a3f; /* leafy green */
-      --secondary: #66c18c; /* soft mint */
-      --accent: #f4c95d; /* warm accent */
+    /* Variables & Reset ----------------------------------------------------- */
+    :root{
+      --primary: #1e8a3f;
+      --secondary: #66c18c;
+      --accent: #f4c95d;
       --dark: #0f172a;
-      --light: #fbfffe;
+      --bg-0: #f0fdf4;
+      --glass-bg: rgba(255,255,255,0.88);
+      --glass-border: rgba(255,255,255,0.32);
+      --muted: #64748b;
+      --text: #0f172a;
+      --max-width: 1200px;
+    }
+    html,body,div,span,h1,h2,h3,h4,h5,h6,p,ul,li,figure,figcaption,a,footer,header,main,section,article{
+      margin:0; padding:0; border:0; font: inherit; vertical-align: baseline;
+    }
+    html, body { height:100%; }
+    body {
+      background: linear-gradient(160deg, var(--bg-0) 0%, #ffffff 50%, var(--bg-0) 100%);
+      color: var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      overflow-x:hidden;
+      -webkit-touch-callout: none;
+    }
+    img { max-width:100%; height:auto; display:block; }
+    a { color:inherit; text-decoration:none; }
+
+    /* Layout utilities ------------------------------------------------------ */
+    .container { max-width:var(--max-width); margin:0 auto; padding:0 1rem; }
+    .section { padding:3.25rem 0; } /* ~52px top/bottom */
+    .glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1.5rem;
+    }
+    .rounded-2xl { border-radius: 1rem; }
+    .rounded-3xl { border-radius: 2rem; }
+    .shadow-soft {
+      box-shadow: 0 20px 50px rgba(20,60,20,0.05);
     }
 
-    * {box-sizing: border-box; margin:0; padding:0; font-family: 'Poppins', sans-serif}
-    html,body {height:100%;}
+    /* Typography ------------------------------------------------------------ */
+    h1 { font-weight:700; color: #175b34; margin-top:0.5rem; letter-spacing:-0.6px; line-height:1.05; }
+    h2 { color: var(--primary); font-weight:700; margin-bottom:1rem; }
+    h3 { font-weight:700; margin:8px 0; }
+    p { color: #334155; }
+    .muted { color: var(--muted); }
 
-    /* Background canvas sits behind everything */
-    .bg-wrap {
-      position:fixed;
-      inset:0;
-      z-index:-1;
-      overflow:hidden;
-      background: linear-gradient(160deg, #eafaf1 0%, #f6fff7 50%, #e9fbf2 100%);
-    }
+    /* Responsive fluid type */
+    .hero-title { font-size: clamp(2.0rem, 6vw, 3.75rem); }
+    .hero-sub { font-size: clamp(1rem, 2.8vw, 1.5rem); }
 
-    /* Floating leaf SVG container */
-    .leaves {
-      position: absolute;
-      inset:0;
-      pointer-events: none;
-    }
-
-    /* subtle particle overlay */
-    canvas.particles {
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      display:block;
-      opacity:0.6;
-      mix-blend-mode: multiply;
-    }
-
-    header {
-      min-height:80vh;
+    /* Header / Hero -------------------------------------------------------- */
+    header.hero {
+      min-height: 100vh;
       display:flex;
       align-items:center;
       justify-content:center;
-      text-align:center;
-      padding:3rem 1.5rem;
-      color:var(--dark);
-      position:relative;
+      padding:3rem 1rem;
     }
-
     .hero-card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.75));
-      border-radius:20px;
-      padding:2rem 2.5rem;
-      max-width:1000px;
-      box-shadow: 0 20px 50px rgba(20,60,20,0.08);
-      backdrop-filter: blur(6px);
+      width:100%;
+      max-width:54rem; /* 864px */
+      text-align:center;
+      padding:2rem;
     }
-
-    h1 {font-size:2.6rem; color:var(--primary);}
-    h2 {font-weight:600; color:var(--dark); margin-top:0.4rem}
-    p.lead {margin-top:0.8rem; color:rgba(15,23,42,0.8)}
-
-    section {padding:4rem 8%;}
-    .section-title {font-size:1.8rem; margin-bottom:1.2rem; color:var(--primary)}
-
-    .card {background:white;border-radius:14px;padding:1.6rem;box-shadow:0 18px 36px rgba(15,23,42,0.06);}
-
-    .grid {display:grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap:1.6rem}
-    ul {list-style:none}
-    ul li::before {content:'•'; color:var(--secondary); display:inline-block; width:1em}
-
-    .badge {display:inline-block;background:var(--secondary);color:white;padding:0.35rem 0.8rem;border-radius:999px;font-size:0.85rem}
-
-    footer {background:var(--dark);color:white;text-align:center;padding:2rem}
-
-    /* Responsive tweaks */
-    @media (max-width:768px) {
-      h1 {font-size:1.9rem}
-      section {padding:2.4rem 6%}
-      .hero-card {padding:1.4rem}
+    .badge {
+      display:inline-block;
+      padding:0.35rem 0.9rem;
+      border-radius:999px;
+      background:#ecfdf6;
+      color:#065f46;
+      font-weight:600;
+      font-size:0.85rem;
     }
+    .contact-row {
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:0.75rem;
+      margin-top:0.6rem;
+      color:#475569;
+      font-weight:500;
+      font-size:0.95rem;
+    }
+    .cta {
+      display:inline-block;
+      margin-top:1.2rem;
+      padding:0.85rem 1.6rem;
+      border-radius:999px;
+      background:var(--primary);
+      color:white;
+      font-weight:700;
+      box-shadow: 0 10px 24px rgba(30,138,63,0.08);
+      transition: transform .18s ease, background .18s ease;
+    }
+    .cta:active { transform: translateY(1px); }
+    .cta:hover { background:#166b39; }
 
-    /* --- Leaf animation styles --- */
-    .leaf {
-      position:absolute;
-      width:64px; height:64px;
+    /* Grid & cards --------------------------------------------------------- */
+    .grid {
+      display:grid;
+      gap:1rem;
+    }
+    .grid.cols-2 { grid-template-columns: 1fr; }
+    .card { padding:1.25rem; border-radius:1rem; background:var(--glass-bg); }
+    .card.feature { /* compatibility, not used */ background: linear-gradient(180deg, #064e3b 0%, #0b5e40 100%); color:white; box-shadow: 0 18px 40px rgba(6,78,59,0.08); }
+
+    /* lists */
+    ul { list-style: disc inside; margin-top:0.5rem; color:#334155; }
+    small.meta { color:#94a3b8; font-size:0.9rem; }
+
+    /* Skills bars */
+    .skill { margin-bottom:1rem; }
+    .skill .bar { background:#e6eef0; height:10px; border-radius:999px; overflow:hidden; }
+    .skill .fill { height:100%; background:var(--primary); width:50%; }
+
+    /* Achievement / badges */
+    .achievement { display:flex; gap:1rem; align-items:flex-start; }
+    .ach-ico { width:44px; height:44px; border-radius:999px; display:flex; align-items:center; justify-content:center; font-size:18px; }
+
+    /* Footer --------------------------------------------------------------- */
+    footer.site-footer { background:#0f1724; color:#cbd5e1; padding:2.5rem 1rem; text-align:center; }
+    footer .muted-xs { color:#94a3b8; font-size:0.85rem; }
+
+    /* Leaf icon + animation ------------------------------------------------ */
+    #leaf-container { position:fixed; inset:0; pointer-events:none; z-index:0; overflow:visible; }
+    svg.leaf {
+      position:fixed;
+      pointer-events:none;
+      z-index:0;
+      fill: var(--secondary);
+      opacity:0.0;
       transform-origin:center;
-      will-change:transform, opacity, filter;
-      filter: drop-shadow(0 6px 10px rgba(20,60,20,0.12));
-      opacity:0.95;
+      will-change: transform, opacity;
+    }
+    @keyframes leafFloat {
+      0% { transform: translateY(110vh) rotate(0deg) scale(1); opacity:0; }
+      12% { opacity:0.7; }
+      85% { opacity:0.7; }
+      100% { transform: translateY(-30vh) rotate(360deg) scale(0.9); opacity:0; }
     }
 
-    @keyframes floatUp {
-      0% {transform: translateY(30vh) rotate(0deg) scale(0.7); opacity:0}
-      20% {opacity:1}
-      100% {transform: translateY(-30vh) rotate(360deg) scale(1); opacity:0}
+    /* Lightweight AOS-like utilities --------------------------------------- */
+    .aos-init { opacity:0; transform: translateY(8px) scale(.995); transition: opacity .6s cubic-bezier(.2,.9,.3,1), transform .6s cubic-bezier(.2,.9,.3,1); will-change: transform, opacity; }
+    .aos-zoom-init { opacity:0; transform: scale(.96); transition: opacity .6s ease, transform .6s ease; }
+    .aos-animate { opacity:1; transform: none; }
+    .aos-zoom-in.aos-animate { opacity:1; transform: none; }
+
+    /* Slide-up / fade-up animations (used by data-aos values) --------------- */
+    [data-aos="fade-up"]{ opacity:0; transform: translateY(12px); transition: opacity .62s cubic-bezier(.2,.9,.3,1), transform .62s cubic-bezier(.2,.9,.3,1); }
+    [data-aos="fade-up"].aos-animate{ opacity:1; transform: translateY(0); }
+    [data-aos="flip-left"]{ opacity:0; transform: rotateY(8deg) translateY(8px); transform-origin:center; transition: opacity .62s, transform .62s; }
+    [data-aos="flip-left"].aos-animate{ opacity:1; transform: none; }
+    [data-aos="zoom-in"]{ opacity:0; transform: scale(.98); transition: opacity .6s ease, transform .6s ease; }
+    [data-aos="zoom-in"].aos-animate{ opacity:1; transform: none; }
+
+    /* Small helpers -------------------------------------------------------- */
+    .muted-700 { color:#475569; }
+    .caps { text-transform:uppercase; font-weight:700; letter-spacing:0.06em; font-size:0.85rem; }
+    .flex { display:flex; }
+    .items-center { align-items:center; }
+    .justify-between { justify-content:space-between; }
+    .gap-4 { gap:1rem; }
+
+    /* Responsive breakpoints ----------------------------------------------- */
+    @media (min-width: 640px) {
+      .grid.cols-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .hero-card { padding:2.5rem; }
+      .card { padding:1.5rem; }
+      .container-pad { padding-left:1.5rem; padding-right:1.5rem; }
+    }
+    @media (min-width: 1024px) {
+      .container-pad { padding-left:2rem; padding-right:2rem; }
+      .grid.cols-2 { gap:1.25rem; }
+      .section-lg { padding-top:4.5rem; padding-bottom:4.5rem; }
     }
 
-    /* subtle parallax tilt on hero */
-    .hero-card:hover {transform: translateY(-6px)}
-    .hero-card {transition:transform 0.35s ease}
+    /* Accessibility focus */
+    a:focus, button:focus { outline:3px solid rgba(30,138,63,0.18); outline-offset:3px; }
 
+    /* Small touch adjustments */
+    @media (hover:hover) {
+      .card:hover { transform: translateY(-6px); transition: transform .22s ease; }
+    }
+
+    /* Prefer-reduced-motion: disable animations for users who prefer less motion */
+    @media (prefers-reduced-motion: reduce) {
+      [data-aos], svg.leaf, .leaf { animation: none !important; transition: none !important; }
+    }
   </style>
 </head>
 <body>
 
-  <div class="bg-wrap" aria-hidden="true">
-    <canvas class="particles"></canvas>
-    <svg class="leaves" id="leaves-svg" width="100%" height="100%">
-      <defs>
-        <g id="leaf-path" transform="scale(0.9)">
-          <path d="M12 2c3 0 5 2 5 5 0 3-6 9-6 9s-6-6-6-9c0-3 2-5 5-5z" fill="var(--secondary)" opacity="0.95"/>
-          <path d="M10 6c1 1 3 2 4 2" stroke="rgba(10,50,20,0.2)" stroke-width="0.6" fill="none"/>
-        </g>
-      </defs>
-    </svg>
-  </div>
+  <!-- Leaf container (JS will inject animated leaves) -->
+  <div id="leaf-container" aria-hidden="true"></div>
 
-<header>
-  <div class="hero-card" data-aos="fade-up">
-    <h1>Nihar B</h1>
-    <h2>Primary Teacher & Social Worker</h2>
-    <p class="lead">Palakkad, Kerala &nbsp;|&nbsp; +91 9446953483 &nbsp;|&nbsp; niharb0101@gmail.com</p>
-    <div style="margin-top:0.9rem;"><span class="badge">KTET Category 1 & 2 Qualified</span></div>
-  </div>
-</header>
+  <main style="position:relative; z-index:10;">
 
-<section data-aos="fade-up">
-  <h2 class="section-title">Professional Profile</h2>
-  <div class="card">
-    <p>
-      Dedicated and patient educator specializing in Elementary Education and Social Service. Ranked <strong>311</strong> in the Kerala PSC Main List (709/2023) for LP School Teacher (Malayalam Medium). Strong commitment to child-centric pedagogy, inclusive learning, and holistic student development through academics, sports, and creative engagement.
-    </p>
-  </div>
-</section>
+    <!-- HERO -->
+    <header class="hero">
+      <div class="hero-card glass rounded-3xl shadow-soft container" role="banner" aria-labelledby="hero-title">
+        <div class="badge" aria-hidden="true">KTET Category 1 & 2 Qualified</div>
 
-<section data-aos="fade-up">
-  <h2 class="section-title">Work Experience</h2>
-  <div class="grid">
-    <div class="card" data-aos="fade-right">
-      <h3>Office Assistant</h3>
-      <p>Karunya Geriatric Care Centre | 2023 – Present</p>
-      <ul>
-        <li>Managing office administration and documentation with high accuracy.</li>
-        <li>Utilizing patience and empathy in a care-oriented environment.</li>
-      </ul>
+        <h1 id="hero-title" class="hero-title" style="margin-top:0.6rem;">Nihar B</h1>
+        <p class="hero-sub muted-700" style="margin-top:0.25rem;">Primary Teacher & Social Worker</p>
+
+        <div class="contact-row" aria-label="Contact information" style="margin-top:0.9rem;">
+          <div>📍 Palakkad, Kerala</div>
+          <div>📞 +91 9446953483</div>
+          <div>✉️ <a href="mailto:niharb0101@gmail.com">niharb0101@gmail.com</a></div>
+        </div>
+
+        <div style="margin-top:1.25rem;">
+          <a class="cta" href="#profile" aria-label="View profile">View Profile</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- PROFESSIONAL PROFILE -->
+    <section id="profile" class="section container section-lg">
+      <div class="container-pad">
+        <h2 class="caps" style="display:flex; align-items:center; gap:.5rem;">
+          <span style="display:inline-block; width:40px; height:6px; background:var(--primary); border-radius:6px;"></span>
+          Professional Profile
+        </h2>
+
+        <div class="card rounded-2xl" style="margin-top:1rem;" data-aos="fade-up">
+          <p style="font-size:1.03rem; line-height:1.6; color: #1f2937;">
+            Dedicated and patient educator specializing in Elementary Education and Social Service. Ranked
+            <strong style="color:var(--primary);">311</strong> in the Kerala PSC Main List (709/2023) for LP School Teacher (Malayalam Medium).
+            Strong commitment to child-centric pedagogy, inclusive learning, and holistic student development through academics, sports, and creative engagement.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK EXPERIENCE -->
+    <section class="section container">
+      <div class="container-pad">
+        <h2 class="caps" style="display:flex; align-items:center; gap:.5rem;">
+          <span style="display:inline-block; width:40px; height:6px; background:var(--primary); border-radius:6px;"></span>
+          Work Experience
+        </h2>
+
+        <div class="grid cols-2" style="margin-top:1rem;">
+          <!-- Job 1 -->
+          <article class="card" data-aos="fade-up">
+            <div class="muted-xs" style="font-weight:700; color:var(--primary);">2023 – Present</div>
+            <h3>Office Assistant</h3>
+            <small class="meta">Karunya Geriatric Care Centre</small>
+            <ul style="margin-top:0.6rem;">
+              <li>Managing office administration and documentation with high accuracy.</li>
+              <li>Utilizing patience and empathy in a care-oriented environment.</li>
+            </ul>
+          </article>
+
+          <!-- Job 2 (PSC – now same style as other boxes) -->
+          <article class="card" data-aos="fade-up">
+            <div class="muted-xs" style="font-weight:700; color:var(--primary);">2023</div>
+            <h3>LP School Teacher (PSC Selection)</h3>
+            <small class="meta">PSC 709/2023</small>
+            <p style="margin-top:0.5rem;">
+              Ranked 311 in the Main List for LP School Teacher (Malayalam Medium).
+            </p>
+          </article>
+
+          <!-- Job 3 -->
+          <article class="card" data-aos="fade-up">
+            <div class="muted-xs" style="font-weight:700; color:var(--primary);">2023</div>
+            <h3>Cluster Resource Coordinator</h3>
+            <small class="meta">BRC Puthur</small>
+            <p style="margin-top:0.5rem;">Facilitated teacher training programs and academic resource coordination.</p>
+          </article>
+
+          <!-- Job 4 -->
+          <article class="card" data-aos="fade-up">
+            <div class="muted-xs" style="font-weight:700; color:var(--primary);">2023</div>
+            <h3>Sports & Mathematics Teacher</h3>
+            <small class="meta">True Line Public School</small>
+            <ul style="margin-top:0.5rem;">
+              <li>Physical education and Mathematics instruction.</li>
+              <li>Focused on foundational mathematical concepts.</li>
+            </ul>
+          </article>
+
+          <!-- Job 5 (span two columns on wide screens) -->
+          <article class="card" data-aos="fade-up" style="grid-column: 1 / -1;">
+            <div class="muted-xs" style="font-weight:700; color:var(--primary);">2023</div>
+            <h3>Primary School Teacher (Grade 1)</h3>
+            <small class="meta">Govt. Tribal School, Anakkal</small>
+            <p style="margin-top:0.5rem;">Delivered foundational education to students in a tribal community setting.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="section" style="background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.6));">
+      <div class="container container-pad">
+        <h2 class="caps">Education & Certifications</h2>
+
+        <div class="grid" style="grid-template-columns: repeat(1,1fr); gap:1rem; margin-top:1rem;">
+          <div class="grid" style="grid-template-columns: repeat(2,1fr); gap:1rem;">
+            <div class="card" data-aos="flip-left">
+              <h4 style="color:var(--primary); font-weight:700;">D.El.Ed</h4>
+              <small class="meta">2020 – 2022</small>
+              <p style="margin-top:0.4rem;">Govt. TTI Chittur. Primary Pedagogy Specialist.</p>
+            </div>
+
+            <div class="card" data-aos="flip-left">
+              <h4 style="color:var(--primary); font-weight:700;">B.Sc Mathematics</h4>
+              <small class="meta">2017 – 2020</small>
+              <p style="margin-top:0.4rem;">MG University. Score: 66.9%</p>
+            </div>
+          </div>
+
+          <div class="grid" style="grid-template-columns: repeat(2,1fr); gap:1rem;">
+            <div class="card" data-aos="flip-left">
+              <h4 style="color:var(--primary); font-weight:700;">KTET Qualified</h4>
+              <small class="meta">Category 1 & 2</small>
+              <p style="margin-top:0.4rem;">Qualified for LP and UP teaching levels.</p>
+            </div>
+
+            <div class="card" data-aos="flip-left">
+              <h4 style="color:var(--primary); font-weight:700;">Rashtrabhasa Praveen</h4>
+              <small class="meta">Hindi Proficiency</small>
+              <p style="margin-top:0.4rem;">Highest certification from DBHP Sabha.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS & VOLUNTEER -->
+    <section class="section container">
+      <div class="container-pad grid" style="grid-template-columns: 1fr; gap:1.5rem;">
+        <div data-aos="fade-right">
+          <h2 class="caps">Skills & Competencies</h2>
+          <div style="margin-top:1rem;">
+            <div class="skill">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                <div style="font-weight:700;">Teaching & Pedagogy</div>
+              </div>
+              <div class="bar"><div class="fill" style="width:95%"></div></div>
+            </div>
+
+            <div class="skill">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                <div style="font-weight:700;">Mathematics Instruction</div>
+              </div>
+              <div class="bar"><div class="fill" style="width:85%"></div></div>
+            </div>
+
+            <div class="skill">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                <div style="font-weight:700;">Languages (Mal, Eng, Hin, Tam)</div>
+              </div>
+              <div class="bar"><div class="fill" style="width:90%"></div></div>
+            </div>
+
+            <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:1rem;">
+              <div class="card" style="display:inline-block; padding:0.45rem 0.75rem; border-radius:8px; background:#fff; box-shadow:0 6px 18px rgba(15,23,42,0.04);">Video Editing</div>
+              <div class="card" style="display:inline-block; padding:0.45rem 0.75rem; border-radius:8px;">Typing (35 WPM)</div>
+              <div class="card" style="display:inline-block; padding:0.45rem 0.75rem; border-radius:8px;">Basic Piano</div>
+              <div class="card" style="display:inline-block; padding:0.45rem 0.75rem; border-radius:8px;">Photography</div>
+              <div class="card" style="display:inline-block; padding:0.45rem 0.75rem; border-radius:8px;">Paper Craft</div>
+            </div>
+          </div>
+        </div>
+
+        <div data-aos="fade-left">
+          <h2 class="caps">Achievements & Leadership</h2>
+          <div style="margin-top:1rem; display:grid; gap:0.9rem;">
+            <div class="achievement">
+              <div class="ach-ico" style="background:#fffbeb; color:#b45309;">🏆</div>
+              <div>
+                <h4 style="font-weight:700;">Rashtrapati Scout</h4>
+                <p class="muted">President's Award recipient (2012–2015).</p>
+              </div>
+            </div>
+
+            <div class="achievement">
+              <div class="ach-ico" style="background:#ecfeff; color:#0369a1;">🤝</div>
+              <div>
+                <h4 style="font-weight:700;">NSS Volunteer</h4>
+                <p class="muted">MG University Unit (2017–2018).</p>
+              </div>
+            </div>
+
+            <div class="achievement">
+              <div class="ach-ico" style="background:#ecfdf5; color:#065f46;">🏸</div>
+              <div>
+                <h4 style="font-weight:700;">College Badminton Team</h4>
+                <p class="muted">Active athlete and sports enthusiast.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div style="font-weight:700;">Nihar B</div>
+      <div class="muted-xs" style="margin-top:0.25rem;">Primary Teacher & Social Worker | Palakkad, Kerala</div>
+      <div style="height:1px; background:#0b1220; opacity:0.25; margin:1rem 0;"></div>
+      <div style="font-size:0.85rem;">&copy; 2026 Portfolio. Built with dedication.</div>
     </div>
+  </footer>
 
-    <div class="card" data-aos="fade-left">
-      <h3>LP School Teacher (PSC Selection)</h3>
-      <p>PSC 709/2023 | 2023</p>
-      <ul>
-        <li>Ranked 311 in the Main List for LP School Teacher (Malayalam Medium).</li>
-      </ul>
-    </div>
+  <!-- === Scripts (all local; no external libs) === -->
+  <script>
+    /* Lightweight AOS-like animation: uses IntersectionObserver
+       - Elements with data-aos="..." get class .aos-init or .aos-zoom-init initially
+       - When scrolled into view they receive .aos-animate
+    */
+    (function(){
+      const AOS_ATTR = 'data-aos';
+      const rootMargin = '0px 0px -8% 0px'; // trigger slightly before bottom
 
-    <div class="card" data-aos="fade-right">
-      <h3>Cluster Resource Coordinator</h3>
-      <p>BRC Puthur | 2023</p>
-      <ul>
-        <li>Facilitated teacher training programs and academic resource coordination.</li>
-      </ul>
-    </div>
+      function applyInit(el, type){
+        if(type === 'zoom-in') el.classList.add('aos-zoom-init');
+        else el.classList.add('aos-init');
+      }
 
-    <div class="card" data-aos="fade-left">
-      <h3>Sports & Mathematics Teacher</h3>
-      <p>True Line Public School | 2023</p>
-      <ul>
-        <li>Handled dual responsibilities in physical education and Mathematics instruction.</li>
-        <li>Focused on foundational mathematical concepts and student athletic development.</li>
-      </ul>
-    </div>
+      function observe() {
+        const els = Array.from(document.querySelectorAll('['+AOS_ATTR+']'));
+        if (!els.length) return;
 
-    <div class="card" data-aos="fade-up">
-      <h3>Primary School Teacher (Grade 1)</h3>
-      <p>Govt. Tribal School, Anakkal | 2023</p>
-      <ul>
-        <li>Delivered foundational education to students in a tribal community setting.</li>
-      </ul>
-    </div>
-  </div>
-</section>
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            const el = entry.target;
+            if (entry.isIntersecting) {
+              el.classList.add('aos-animate');
+              io.unobserve(el);
+            }
+          });
+        }, { threshold: 0.12, rootMargin });
 
-<section data-aos="fade-up">
-  <h2 class="section-title">Education</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>D.El.Ed (2020 – 2022)</h3>
-      <p>Govt. TTI Chittur, Palakkad</p>
-      <p>Specialization: Primary Pedagogy and Child Development.</p>
-    </div>
-    <div class="card">
-      <h3>B.Sc Mathematics (2017 – 2020)</h3>
-      <p>MG University | Vazhoor</p>
-      <p>Score: 66.9%</p>
-    </div>
-    <div class="card">
-      <h3>KTET Qualified</h3>
-      <p>Category 1 & 2 — Qualified for Lower Primary and Upper Primary teaching levels.</p>
-    </div>
-    <div class="card">
-      <h3>Rashtrabhasa Praveen</h3>
-      <p>DBHP Sabha — Highest level certification in Hindi language proficiency.</p>
-    </div>
-  </div>
-</section>
+        els.forEach(el => {
+          const t = el.getAttribute(AOS_ATTR) || 'fade-up';
+          applyInit(el, t);
+          io.observe(el);
+        });
+      }
 
-<section data-aos="fade-up">
-  <h2 class="section-title">Key Skills & Competencies</h2>
-  <div class="grid">
-    <div class="card"><strong>Teaching:</strong> Pedagogy, Child Observation, Mentoring, Lesson Planning.</div>
-    <div class="card"><strong>Technical:</strong> English Typing (35 WPM), Malayalam Typing, Video Editing, YouTube Content.</div>
-    <div class="card"><strong>Creative:</strong> Basic Piano, Drawing/Sketching, Photography, Paper Craft.</div>
-    <div class="card"><strong>Languages:</strong> Malayalam, English, Hindi (Praveen), Tamil.</div>
-  </div>
-</section>
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', observe);
+      } else observe();
+    })();
 
-<section data-aos="fade-up">
-  <h2 class="section-title">Volunteer & Leadership Experience</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>NSS Volunteer</h3>
-      <p>MG University Unit (2017 – 2018)</p>
-      <p>Participated in community service and social welfare projects.</p>
-    </div>
-    <div class="card">
-      <h3>Rashtrapati Scout</h3>
-      <p>Bharat Scouts and Guides (2012 – 2015)</p>
-      <p>Recipient of the President's Award, the highest honor in Scouting.</p>
-    </div>
-    <div class="card">
-      <h3>Achievements & Activities</h3>
-      <ul>
-        <li>Member of the College Badminton Team.</li>
-        <li>State Level B-Grade in Multimedia Presentation.</li>
-        <li>District Level A-Grade in Mathematics Fair (Sasthrolsavam).</li>
-      </ul>
-    </div>
-  </div>
-</section>
+    /* Leaf generator - generates subtle falling/float leaves */
+    (function(){
+      const container = document.getElementById('leaf-container');
+      if (!container) return;
 
+      const leafPath = '<path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z" />';
 
+      function createLeaf(){
+        const ns = 'http://www.w3.org/2000/svg';
+        const svg = document.createElementNS(ns, 'svg');
+        svg.setAttribute('viewBox', '0 0 24 24');
+        svg.classList.add('leaf');
 
-<footer>
-  <p>© 2026 Nihar B | Primary Teacher & Social Worker</p>
-</footer>
+        const size = Math.round(Math.random()*40 + 18); // 18..58 px
+        const left = Math.random()*100; // percent
+        const duration = (Math.random()*10 + 10).toFixed(2); // 10..20s
+        const delay = (Math.random()*6).toFixed(2);
 
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init({duration:900, once:true});
+        svg.style.width = size + 'px';
+        svg.style.left = left + 'vw';
+        svg.style.bottom = '-12vh';
+        svg.style.opacity = 0;
+        svg.style.animation = `leafFloat ${duration}s linear ${delay}s forwards`;
+        svg.style.pointerEvents = 'none';
+        svg.innerHTML = leafPath;
 
-  /* --- Floating leaves generator --- */
-  (function generateLeaves(){
-    const svg = document.getElementById('leaves-svg');
-    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-    const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+        if (Math.random() > 0.6) {
+          svg.style.fill = 'var(--primary)';
+        } else {
+          svg.style.fill = 'var(--secondary)';
+        }
 
-    const leafCount = Math.min(14, Math.floor(vw/80));
-    for(let i=0;i<leafCount;i++){
-      const use = document.createElementNS('http://www.w3.org/2000/svg','use');
-      use.setAttributeNS('http://www.w3.org/1999/xlink','href','#leaf-path');
-      const startX = Math.random()*vw;
-      const size = 28 + Math.random()*60; // px
-      use.setAttribute('width', size);
-      use.setAttribute('height', size);
-      use.setAttribute('x', startX);
-      use.setAttribute('y', vh + Math.random()*200);
-      use.style.opacity = 0;
-      use.classList.add('leaf');
+        container.appendChild(svg);
 
-      // random animation timings
-      const duration = 12 + Math.random()*18; // seconds
-      const delay = Math.random()*8; // seconds
-      use.style.animation = `floatUp ${duration}s linear ${delay}s infinite`;
-      use.style.transformOrigin = 'center';
-      use.style.transform = `translateY(0) rotate(${Math.random()*360}deg)`;
-      svg.appendChild(use);
-    }
-  })();
+        setTimeout(() => {
+          svg.remove();
+        }, (parseFloat(duration) + parseFloat(delay) + 0.5) * 1000);
+      }
 
-  /* --- Particles canvas (subtle floating orbs) --- */
-  (function particles(){
-    const canvas = document.querySelector('canvas.particles');
-    const ctx = canvas.getContext('2d');
-    let W = canvas.width = window.innerWidth;
-    let H = canvas.height = window.innerHeight;
-    const num = Math.floor((W*H)/90000) + 20; // density
-    const parts = [];
+      for (let i=0;i<12;i++){
+        setTimeout(createLeaf, i * 220);
+      }
+      setInterval(createLeaf, 2200);
+    })();
 
-    function rand(min,max){return Math.random()*(max-min)+min}
-
-    class P{constructor(){this.reset()}
-      reset(){this.x=rand(0,W); this.y=rand(0,H); this.r=rand(0.6,2.2); this.vx=rand(-0.2,0.2); this.vy=rand(-0.3,-0.05); this.alpha=rand(0.15,0.5)}
-      step(){this.x+=this.vx; this.y+=this.vy; if(this.y<-10||this.x<-20||this.x>W+20) this.reset();}
-      draw(){ctx.beginPath(); ctx.globalAlpha=this.alpha; ctx.arc(this.x,this.y,this.r,0,Math.PI*2); ctx.fillStyle='rgba(34,112,71,0.18)'; ctx.fill()}
-    }
-
-    for(let i=0;i<num;i++) parts.push(new P());
-
-    function loop(){
-      ctx.clearRect(0,0,W,H);
-      for(let p of parts){p.step(); p.draw()}
-      requestAnimationFrame(loop);
-    }
-    loop();
-
-    window.addEventListener('resize', ()=>{W=canvas.width=window.innerWidth; H=canvas.height=window.innerHeight});
-  })();
-
-  // ensure leaves reposition on resize (simple reload for stability)
-  let resizeTimer; window.addEventListener('resize', ()=>{clearTimeout(resizeTimer); resizeTimer=setTimeout(()=>location.reload(),300)})
-</script>
-
+    /* Smooth scroll fallback for older browsers */
+    (function(){
+      if ('scrollBehavior' in document.documentElement.style) return;
+      document.querySelectorAll('a[href^="#"]').forEach(a=>{
+        a.addEventListener('click', function(e){
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            e.preventDefault();
+            const top = target.getBoundingClientRect().top + window.pageYOffset - 20;
+            window.scrollTo({ top: top, behavior:'smooth' });
+          }
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
