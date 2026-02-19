@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>കട്ടിടീച്ചേഷ്ണ പരിശീലനം</title>
+    <meta name="description" content="ഗണിതം, വിജ്ഞാനകോശ, ഇംഗ്ലീഷ് പരിശീലനം - വ്യക്തിഗത നിർദ്ദേശനം">
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700;800&family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- ✨ SHARED CSS -->
+    <link rel="stylesheet" href="../css/common.css">
+    
+    <!-- Page-specific CSS -->
+    <link rel="stylesheet" href="../css/tutoring.css">
+</head>
+<body>
+
+<!-- ✨ HEADER & NAVIGATION (Dynamically loaded by common.js) -->
+<div id="header-container"></div>
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>പരിശീലനം</h1>
+        <div class="hero-ml">വ്യക്തിഗത നിർദ്ദേശനം, ബിജ്ജ കോർസുകൾ</div>
+        <p>ഗണിതം, വിജ്ഞാനകോശ, ഇംഗ്ലീഷ്, മലയാളം - സ്കൂൾ കോർസുകൾ മുതൽ പ്രോഗ്രാമിംഗ് വരെ</p>
+    </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+    <h2 class="section-title">📚 പരിശീലന കോർസുകൾ</h2>
+    
+    <!-- CATEGORY FILTER -->
+    <div class="category-filter" id="category-filter"></div>
+    
+    <!-- COURSES GRID -->
+    <div class="courses-grid" id="courses-grid"></div>
+    
+    <!-- PACKAGES SECTION -->
+    <section class="packages-section" id="packages-section">
+        <h2 class="section-title">💰 പരിശീലന പാക്കേജുകൾ</h2>
+        <div class="packages-grid" id="packages-grid"></div>
+    </section>
+    
+    <!-- TESTIMONIALS SECTION -->
+    <section class="testimonials-section" id="testimonials-section">
+        <h2 class="section-title">⭐ വിദ്യാർത്ഥികളുടെ വിജയ കഥകൾ</h2>
+        <div class="testimonials-grid" id="testimonials-grid"></div>
+    </section>
+</div>
+
+<!-- COURSE DETAILS MODAL -->
+<div class="modal" id="course-modal">
+    <div class="modal-content" id="modal-body"></div>
+</div>
+
+<!-- ✨ FOOTER (Dynamically loaded by common.js) -->
+<div id="footer-container"></div>
+
+<!-- ✨ SHARED JAVASCRIPT (loads header/footer) -->
+<script src="../js/common.js"></script>
+
+<!-- Page-specific data and JavaScript -->
+<script src="../data/tutoring-data.json"></script>
+<script src="../js/tutoring.js"></script>
+
+</body>
+</html>

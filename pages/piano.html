@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>കട്ടിടീച്ചേഷ്ണ സംഗീതം</title>
+    <meta name="description" content="പിയാനോ സംഗീതം, കവറുകൾ, സംഗീത പരിശീലനം വീട്ടിൽ നിന്നും">
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700;800&family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- ✨ SHARED CSS -->
+    <link rel="stylesheet" href="../css/common.css">
+    
+    <!-- Page-specific CSS -->
+    <link rel="stylesheet" href="../css/piano.css">
+</head>
+<body>
+
+<!-- ✨ HEADER & NAVIGATION (Dynamically loaded by common.js) -->
+<div id="header-container"></div>
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>സംഗീതം</h1>
+        <div class="hero-ml">പിയാനോ സംഗീത യാത്ര</div>
+        <p>പിയാനോ കവറുകൾ, മൂലരചനകൾ, സ്വതന്ത്ര സംഗീത ഭാവനകൾ - വീടിൽ നിന്നും സൃഷ്ടിച്ചത്</p>
+    </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+    <h2 class="section-title">🎹 പിയാനോ സംഗീത സമൂഹം</h2>
+    
+    <!-- CATEGORY FILTER -->
+    <div class="category-filter" id="category-filter"></div>
+    
+    <!-- MUSIC GRID -->
+    <div class="music-grid" id="music-grid"></div>
+</div>
+
+<!-- MUSIC DETAILS MODAL -->
+<div class="modal" id="music-modal">
+    <div class="modal-content" id="modal-body"></div>
+</div>
+
+<!-- ✨ FOOTER (Dynamically loaded by common.js) -->
+<div id="footer-container"></div>
+
+<!-- ✨ SHARED JAVASCRIPT (loads header/footer) -->
+<script src="../js/common.js"></script>
+
+<!-- Page-specific data and JavaScript -->
+<script src="../data/piano-data.json"></script>
+<script src="../js/piano.js"></script>
+
+</body>
+</html>

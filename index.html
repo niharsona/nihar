@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>കട്ടിടീച്ചേഴ്സ് - നിങ്ങളുടെ പരിശീലനം പങ്കാളി</title>
+    <meta name="description" content="ഫോട്ടോഗ്രാഫി, സംഗീതം, പരിശീലനം, തോട്ടം - പാലക്കാട്">
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700;800&family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- ✨ SHARED CSS (Header, Footer, Nav) -->
+    <link rel="stylesheet" href="css/common.css">
+
+    <!-- Page-specific CSS (if any) -->
+    <style>
+        /* HOME PAGE SPECIFIC STYLES */
+        body {
+            padding-top: 80px;
+        }
+
+        .hero {
+            margin-top: 0;
+            padding: 80px 32px;
+            background: linear-gradient(135deg, var(--primary-dark-green) 0%, var(--forest-green) 50%, var(--primary-green) 100%);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: drift 8s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        .hero::after {
+            content: '📷 🎹 📚 🌿';
+            position: absolute;
+            top: 50%;
+            right: 60px;
+            font-size: 4rem;
+            opacity: 0.15;
+            z-index: 1;
+            animation: float 6s ease-in-out infinite;
+            letter-spacing: 15px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 3.2rem;
+            margin-bottom: 16px;
+            font-weight: 800;
+            opacity: 0;
+            animation: slideInDown 700ms ease-out forwards;
+        }
+
+        .hero-subtitle {
+            font-family: 'Noto Sans Malayalam', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            opacity: 0;
+            animation: slideInDown 700ms ease-out 150ms forwards;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.95);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+            opacity: 0;
+            animation: slideInDown 700ms ease-out 300ms forwards;
+        }
+
+        .services {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 32px;
+        }
+
+        .services-title {
+            font-family: 'Noto Sans Malayalam', sans-serif;
+            font-size: 2.2rem;
+            color: var(--primary-dark-green);
+            text-align: center;
+            margin-bottom: 50px;
+            font-weight: 800;
+            opacity: 0;
+            animation: slideInDown 700ms ease-out forwards;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 32px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(27, 67, 50, 0.08);
+            transition: all 400ms ease;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 700ms ease-out forwards;
+            border-top: 4px solid var(--leaf-green);
+        }
+
+        .service-card:nth-child(1) { animation-delay: 100ms; }
+        .service-card:nth-child(2) { animation-delay: 150ms; }
+        .service-card:nth-child(3) { animation-delay: 200ms; }
+        .service-card:nth-child(4) { animation-delay: 250ms; }
+        .service-card:nth-child(5) { animation-delay: 300ms; }
+        .service-card:nth-child(6) { animation-delay: 350ms; }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(27, 67, 50, 0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        .service-card h3 {
+            font-family: 'Noto Sans Malayalam', sans-serif;
+            font-size: 1.3rem;
+            color: var(--primary-dark-green);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: var(--light-text);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .service-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--leaf-green);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 300ms ease;
+        }
+
+        .service-link:hover {
+            background: var(--forest-green);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(45, 106, 79, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+
+            .hero {
+                padding: 40px 16px;
+                min-height: 400px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .services {
+                padding: 40px 16px;
+            }
+
+            .services-title {
+                font-size: 1.6rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .service-card {
+                padding: 24px;
+            }
+
+            .service-icon {
+                font-size: 2.5rem;
+            }
+
+            .service-card h3 {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ✨ HEADER & NAVIGATION (DYNAMICALLY LOADED FROM common.js) -->
+<div id="header-container"></div>
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>നിങ്ങളുടെ പരിശീലനം പങ്കാളി</h1>
+        <div class="hero-subtitle">കട്ടിടീച്ചേഴ്സ്</div>
+        <p>ഫോട്ടോഗ്രാഫി, സംഗീതം, പരിശീലനം, തോട്ടം - നിങ്ങളുടെ ഭാവിത്തിൽ നിക്ഷേപം ചെയ്യുക</p>
+    </div>
+</section>
+
+<!-- SERVICES SECTION -->
+<div class="services">
+    <h2 class="services-title">ഞങ്ങളുടെ സേവനങ്ങൾ</h2>
+    
+    <div class="services-grid">
+        <!-- Photography -->
+        <div class="service-card">
+            <div class="service-icon">📷</div>
+            <h3>ഫോട്ടോഗ്രാഫി</h3>
+            <p>പ്രകൃതി, പ്രതിരൂപ, സ്കൂൾ ഫോട്ടോഗ്രാഫി സേവനങ്ങൾ</p>
+            <a href="pages/photography.html" class="service-link">കൂടുതൽ അറിയുക</a>
+        </div>
+
+        <!-- Tutoring -->
+        <div class="service-card">
+            <div class="service-icon">📚</div>
+            <h3>പരിശീലനം</h3>
+            <p>ഗണിതം, വിജ്ഞാനകോശ, ഇംഗ്ലീഷ് - വ്യക്തിഗത നിർദ്ദേശനം</p>
+            <a href="pages/tutoring.html" class="service-link">കൂടുതൽ അറിയുക</a>
+        </div>
+
+        <!-- Music -->
+        <div class="service-card">
+            <div class="service-icon">🎹</div>
+            <h3>സംഗീതം</h3>
+            <p>പിയാനോ സംഗീതം, കവറുകൾ, സംഗീത പരിശീലനം</p>
+            <a href="pages/piano.html" class="service-link">കൂടുതൽ അറിയുക</a>
+        </div>
+
+        <!-- Gardening -->
+        <div class="service-card">
+            <div class="service-icon">🌿</div>
+            <h3>തോട്ടം</h3>
+            <p>വീട്ടിലെ തോട്ടം, ചെടി പരിചരണ, ജൈവ തോട്ടം</p>
+            <a href="pages/gardening.html" class="service-link">കൂടുതൽ അറിയുക</a>
+        </div>
+
+        <!-- About -->
+        <div class="service-card">
+            <div class="service-icon">ℹ️</div>
+            <h3>ഞങ്ങളെക്കുറിച്ച്</h3>
+            <p>കട്ടിടീച്ചേഴ്സിന്റെ കഥ, ദൃഷ്ടിഭംഗി, സേവനങ്ങൾ</p>
+            <a href="pages/about.html" class="service-link">കൂടുതൽ അറിയുക</a>
+        </div>
+
+        <!-- Contact -->
+        <div class="service-card">
+            <div class="service-icon">💬</div>
+            <h3>സമ്പർക്കം</h3>
+            <p>നിങ്ങളുടെ ചോദ്യങ്ങൾ, നിർദ്ദേശങ്ങൾ, ബുക്കിംഗ്</p>
+            <a href="/cdn-cgi/l/email-protection#d1b2bebfa5b0b2a591baa4a5a5a8a5b4b0b2b9b4a3a2ffb8bf" class="service-link">ബന്ധപ്പെടുക</a>
+        </div>
+    </div>
+</div>
+
+<!-- ✨ FOOTER (DYNAMICALLY LOADED FROM common.js) -->
+<div id="footer-container"></div>
+
+<!-- ✨ SHARED JAVASCRIPT -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/common.js"></script>
+

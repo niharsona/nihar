@@ -1,0 +1,141 @@
+{
+  "site": {
+    "name": "കട്ടിടീച്ചേഴ്സ്",
+    "nameEnglish": "KuttyTeachers",
+    "tagline": "നിങ്ങളുടെ പരിശീലനം പങ്കാളി",
+    "taglineEnglish": "Your Learning Partner",
+    "description": "ഫോട്ടോഗ്രാഫി, സംഗീതം, പരിശീലനം, തോട്ടം - പാലക്കാട്",
+    "descriptionEnglish": "Photography, Music, Tutoring, Gardening - from Palakkad",
+    "logo": "assets/images/logo.png",
+    "year": 2026,
+    "location": "പാലക്കാട്, കേരളം",
+    "locationEnglish": "Palakkad, Kerala",
+    "email": "contact@kuttyteachers.in",
+    "phone": "+91-XXXXXXXXXX"
+  },
+
+  "socialMedia": {
+    "instagram": {
+      "name": "Instagram",
+      "icon": "📷",
+      "url": "https://instagram.com/kuttyteachers",
+      "enabled": true
+    },
+    "facebook": {
+      "name": "Facebook",
+      "icon": "👤",
+      "url": "https://facebook.com/kuttyteachers",
+      "enabled": true
+    },
+    "youtube": {
+      "name": "YouTube",
+      "icon": "▶️",
+      "url": "https://youtube.com/@kuttyteachers",
+      "enabled": true
+    },
+    "whatsapp": {
+      "name": "WhatsApp",
+      "icon": "💬",
+      "url": "https://wa.me/919XXXXXXXXXX",
+      "enabled": true
+    },
+    "linkedin": {
+      "name": "LinkedIn",
+      "icon": "🔗",
+      "url": "https://linkedin.com/company/kuttyteachers",
+      "enabled": false
+    },
+    "twitter": {
+      "name": "Twitter",
+      "icon": "𝕏",
+      "url": "https://twitter.com/kuttyteachers",
+      "enabled": false
+    }
+  },
+
+  "navigation": [
+    {
+      "label": "വീട്",
+      "labelEnglish": "Home",
+      "href": "index.html",
+      "icon": "🏠"
+    },
+    {
+      "label": "ഫോട്ടോഗ്രാഫി",
+      "labelEnglish": "Photography",
+      "href": "pages/photography.html",
+      "icon": "📷"
+    },
+    {
+      "label": "പരിശീലനം",
+      "labelEnglish": "Tutoring",
+      "href": "pages/tutoring.html",
+      "icon": "📚"
+    },
+    {
+      "label": "സംഗീതം",
+      "labelEnglish": "Music",
+      "href": "pages/piano.html",
+      "icon": "🎹"
+    },
+    {
+      "label": "തോട്ടം",
+      "labelEnglish": "Gardening",
+      "href": "pages/gardening.html",
+      "icon": "🌿"
+    },
+    {
+      "label": "ഞങ്ങളെക്കുറിച്ച്",
+      "labelEnglish": "About",
+      "href": "pages/about.html",
+      "icon": "ℹ️"
+    }
+  ],
+
+  "pages": {
+    "home": {
+      "title": "കട്ടിടീച്ചേഴ്സ് - പരിശീലനം, സൃഷ്ടി, പ്രകൃതി",
+      "metaDescription": "ഫോട്ടോഗ്രാഫി, സംഗീതം, ഗണിതം പരിശീലനം, തോട്ടം - പാലക്കാട്ത്"
+    },
+    "photography": {
+      "title": "കട്ടിടീച്ചേഴ്സ് ഫോട്ടോഗ്രാഫി",
+      "metaDescription": "പ്രകൃതി, പ്രതിരൂപ, സ്കൂൾ ഫോട്ടോഗ്രാഫി പാലക്കാടിൽ നിന്ന്"
+    },
+    "tutoring": {
+      "title": "കട്ടിടീച്ചേഴ്സ് പരിശീലനം",
+      "metaDescription": "ഗണിതം, വിജ്ഞാനകോശ, ഇംഗ്ലീഷ് പരിശീലനം - വ്യക്തിഗത നിർദ്ദേശനം"
+    },
+    "piano": {
+      "title": "കട്ടിടീച്ചേഴ്സ് സംഗീതം",
+      "metaDescription": "പിയാനോ സംഗീതം, കവറുകൾ, സംഗീത പരിശീലനം വീട്ടിൽ നിന്നും"
+    },
+    "gardening": {
+      "title": "കട്ടിടീച്ചേഴ്സ് തോട്ടം",
+      "metaDescription": "വീട്ടിലെ തോട്ടം, ചെടി പരിചരണ, പാലക്കാട് ജൈവ തോട്ടം"
+    },
+    "about": {
+      "title": "ഞങ്ങളെക്കുറിച്ച് - കട്ടിടീച്ചേഴ്സ്",
+      "metaDescription": "കട്ടിടീച്ചേഴ്സിന്റെ കഥ, ദൃഷ്ടിഭംഗി, സേവനങ്ങൾ"
+    }
+  },
+
+  "colors": {
+    "primaryDarkGreen": "#1b4332",
+    "primaryGreen": "#2d6a4f",
+    "forestGreen": "#40916c",
+    "leafGreen": "#52b788",
+    "softMint": "#95d5b2",
+    "paleGreen": "#d8f3dc",
+    "offWhite": "#f8f9f7",
+    "white": "#ffffff",
+    "black": "#0b1c0e",
+    "lightText": "#2d5a3d",
+    "accentGreen": "#40916c"
+  },
+
+  "fonts": {
+    "primary": "'Inter', system-ui, sans-serif",
+    "display": "'Syne', sans-serif",
+    "malayalam": "'Noto Sans Malayalam', sans-serif"
+  }
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>കട്ടിടീച്ചേഷ്ണ തോട്ടം</title>
+    <meta name="description" content="വീട്ടിലെ തോട്ടം, ചെടി പരിചരണ, പാലക്കാട് ജൈവ തോട്ടം">
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700;800&family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- ✨ SHARED CSS -->
+    <link rel="stylesheet" href="../css/common.css">
+    
+    <!-- Page-specific CSS -->
+    <link rel="stylesheet" href="../css/gardening.css">
+</head>
+<body>
+
+<!-- ✨ HEADER & NAVIGATION (Dynamically loaded by common.js) -->
+<div id="header-container"></div>
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>തോട്ടം</h1>
+        <div class="hero-ml">പാലക്കാടിലെ നമ്മുടെ തോട്ടം സാഹസിക യാത്ര</div>
+        <p>വിവിധ ചെടികൾ, വളർച്ചി കഥകൾ, പരിചരണ നിർദ്ദേശങ്ങൾ - സൂര്യപ്രകാശം, നീരാൾ, വളം എല്ലാ വിശദാംശങ്ങളുമായി</p>
+    </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+    <h2 class="section-title">🌿 നമ്മുടെ തോട്ടത്തിൽ വളരുന്ന ചെടികൾ</h2>
+    
+    <!-- CATEGORY FILTER -->
+    <div class="category-filter" id="category-filter"></div>
+    
+    <!-- PLANTS GRID -->
+    <div class="plants-grid" id="plants-grid"></div>
+</div>
+
+<!-- PLANT DETAILS MODAL -->
+<div class="modal" id="plant-modal">
+    <div class="modal-content" id="modal-body"></div>
+</div>
+
+<!-- ✨ FOOTER (Dynamically loaded by common.js) -->
+<div id="footer-container"></div>
+
+<!-- ✨ SHARED JAVASCRIPT (loads header/footer) -->
+<script src="../js/common.js"></script>
+
+<!-- Page-specific data and JavaScript -->
+<script src="../data/plants-data.json"></script>
+<script src="../js/gardening.js"></script>
+
+</body>
+</html>

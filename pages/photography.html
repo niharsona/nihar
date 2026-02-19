@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>കട്ടിടീച്ചേഷ്ണ ഫോട്ടോഗ്രാഫി</title>
+    <meta name="description" content="പ്രകൃതി, പ്രതിരൂപ, സ്കൂൾ ഫോട്ടോഗ്രാഫി പാലക്കാടിൽ നിന്ന്">
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700;800&family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- ✨ SHARED CSS -->
+    <link rel="stylesheet" href="../css/common.css">
+    
+    <!-- Page-specific CSS -->
+    <link rel="stylesheet" href="../css/photography.css">
+</head>
+<body>
+
+<!-- ✨ HEADER & NAVIGATION (Dynamically loaded by common.js) -->
+<div id="header-container"></div>
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>ഫോട്ടോഗ്രാഫി</h1>
+        <div class="hero-ml">പാലക്കാടിലെ ദൃശ്യങ്ങൾ, സ്ഥാനങ്ങൾ, നിമിഷങ്ങൾ</div>
+        <p>പ്രകൃതി, പ്രതിരൂപ, സ്കൂൾ ഫോട്ടോഗ്രാഫി - വിഡിയോ ട്യൂട്ടോറിയലുകളുമായി ഓരോ ചിത്രത്തിന്റെ പിന്നിലെ കഥ</p>
+    </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+    <h2 class="section-title">📷 നമ്മുടെ ഫോട്ടോഗ്രാഫി സമൂഹം</h2>
+    
+    <!-- CATEGORY FILTER -->
+    <div class="category-filter" id="category-filter"></div>
+    
+    <!-- PHOTOGRAPHY GRID -->
+    <div class="photography-grid" id="photography-grid"></div>
+</div>
+
+<!-- PHOTO DETAILS MODAL -->
+<div class="modal" id="photo-modal">
+    <div class="modal-content" id="modal-body"></div>
+</div>
+
+<!-- ✨ FOOTER (Dynamically loaded by common.js) -->
+<div id="footer-container"></div>
+
+<!-- ✨ SHARED JAVASCRIPT (loads header/footer) -->
+<script src="../js/common.js"></script>
+
+<!-- Page-specific data and JavaScript -->
+<script src="../data/photography-data.json"></script>
+<script src="../js/photography.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,490 @@
+/* ============================================
+   കട്ടിടീച്ചേഴ്സ് - COMMON STYLES (SHARED)
+   ============================================
+   
+   This file is SHARED across all pages.
+   Header, Footer, Navigation, Hamburger Menu
+   
+   DO NOT add page-specific styles here!
+*/
+
+:root {
+    /* Greenery palette */
+    --primary-dark-green: #1b4332;
+    --primary-green: #2d6a4f;
+    --forest-green: #40916c;
+    --leaf-green: #52b788;
+    --soft-mint: #95d5b2;
+    --pale-green: #d8f3dc;
+    --off-white: #f8f9f7;
+    --white: #ffffff;
+    --black: #0b1c0e;
+    --light-text: #2d5a3d;
+    --accent-green: #40916c;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--off-white);
+    color: var(--light-text);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+}
+
+/* ============================================
+   HEADER STYLES
+   ============================================ */
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border-bottom: 2px solid var(--pale-green);
+    padding: 18px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(27, 67, 50, 0.08);
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, 
+        rgba(45, 106, 79, 0.12) 0%,
+        rgba(45, 106, 79, 0.06) 25%,
+        rgba(82, 183, 136, 0.04) 50%,
+        rgba(45, 106, 79, 0.06) 75%,
+        rgba(45, 106, 79, 0.12) 100%);
+    pointer-events: none;
+    z-index: -1;
+    animation: fadeFlow 4s ease-in-out infinite;
+}
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.logo-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.logo-english {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--primary-dark-green);
+    letter-spacing: 1px;
+}
+
+.logo-malayalam {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--forest-green);
+}
+
+/* ============================================
+   NAVIGATION (DESKTOP)
+   ============================================ */
+
+.nav {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.nav-item {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    padding: 8px 14px;
+    text-decoration: none;
+    color: var(--light-text);
+    font-weight: 500;
+    border-radius: 6px;
+    transition: all 300ms ease;
+    font-size: 0.95rem;
+    position: relative;
+    display: inline-block;
+}
+
+.nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 14px;
+    right: 14px;
+    height: 2px;
+    background: var(--leaf-green);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 300ms ease;
+}
+
+.nav-item:hover::after {
+    transform: scaleX(1);
+}
+
+.nav-item:hover {
+    background: var(--pale-green);
+}
+
+.nav-item.active {
+    background: var(--primary-green);
+    color: var(--white);
+}
+
+.nav-item.active::after {
+    display: none;
+}
+
+/* ============================================
+   HAMBURGER MENU (MOBILE)
+   ============================================ */
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 6px;
+    z-index: 3;
+}
+
+.hamburger span {
+    width: 24px;
+    height: 3px;
+    background: var(--primary-dark-green);
+    border-radius: 2px;
+    transition: all 300ms ease;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(10px, 10px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* ============================================
+   MOBILE MENU
+   ============================================ */
+
+.mobile-menu {
+    display: none;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background: var(--white);
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(27, 67, 50, 0.15);
+    z-index: 99;
+    border-bottom: 2px solid var(--pale-green);
+}
+
+.mobile-menu.active {
+    display: flex;
+}
+
+.mobile-menu .nav-item {
+    padding: 12px 16px;
+    border-radius: 0;
+    border-left: 4px solid transparent;
+    text-align: left;
+    display: block;
+}
+
+.mobile-menu .nav-item:hover {
+    background: var(--pale-green);
+    border-left-color: var(--forest-green);
+}
+
+.mobile-menu .nav-item.active {
+    background: var(--primary-green);
+    color: var(--white);
+    border-left-color: var(--white);
+}
+
+/* ============================================
+   FOOTER STYLES
+   ============================================ */
+
+.footer {
+    background: var(--primary-dark-green);
+    color: var(--white);
+    padding: 60px 32px;
+    margin-top: 60px;
+}
+
+.footer-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-col h4 {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+    font-weight: 700;
+}
+
+.footer-col p {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 8px;
+}
+
+.footer-col a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    transition: all 300ms ease;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.footer-col a:hover {
+    color: var(--white);
+    text-decoration: underline;
+}
+
+/* ============================================
+   SOCIAL MEDIA LINKS
+   ============================================ */
+
+.social-links {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    text-decoration: none;
+    color: var(--white);
+    font-size: 1.2rem;
+    transition: all 300ms ease;
+}
+
+.social-link:hover {
+    background: var(--leaf-green);
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(82, 183, 136, 0.3);
+}
+
+/* ============================================
+   FOOTER BOTTOM
+   ============================================ */
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* ============================================
+   ANIMATIONS (SHARED)
+   ============================================ */
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes drift {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+    33% {
+        transform: translate(30px, -30px);
+    }
+    66% {
+        transform: translate(-20px, 20px);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes fadeFlow {
+    0%, 100% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+    .header {
+        padding: 14px 16px;
+    }
+
+    .nav {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .logo-img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .logo-english {
+        font-size: 0.85rem;
+    }
+
+    .logo-malayalam {
+        font-size: 0.75rem;
+    }
+
+    .footer {
+        padding: 40px 16px;
+    }
+
+    .footer-container {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 12px 12px;
+    }
+
+    .logo {
+        gap: 8px;
+    }
+
+    .logo-img {
+        width: 28px;
+        height: 28px;
+    }
+
+    .logo-english {
+        font-size: 0.75rem;
+    }
+
+    .footer {
+        padding: 30px 12px;
+    }
+
+    .footer-col h4 {
+        font-size: 1rem;
+    }
+
+    .footer-col p,
+    .footer-col a {
+        font-size: 0.9rem;
+    }
+
+    .social-link {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
